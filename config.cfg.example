@@ -1,0 +1,22 @@
+[DEFAULT]
+project = POJC
+task_pattern = ${project}-\d+
+after = 2016-03-01
+before = 2016-03-08
+
+[base]
+parts =
+    jira
+    git
+
+[git]
+provider = git
+git_url = git@github.com:xxx/xxx.git
+author = xxx@gmail.com
+
+[jira]
+provider = jira
+server = https://xxx.atlassian.net/
+uname = xxx.xxx
+pswd = xxxx
+user = xxx.xxx

@@ -2,7 +2,8 @@ from .core import collect_time_stats
 
 
 def collect():
-    collect_time_stats(None, None, None)
+    config_file = "config.cfg"
+    collect_time_stats(config_file)
 
 
 def report():
