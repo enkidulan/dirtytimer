@@ -28,7 +28,7 @@ def collect_time_stats(config, params=None):
     #     utility = getattr(importlib.import_module(module), klass)
     #     component.provideUtility(utility(None), ITimeCollector, provider)
 
-    data = dict(get_sections(config['base']['parts'].split(), config))
+    data = dict(get_sections(config['base']['collectors'].split(), config))
     print(data)
     # import pdb; pdb.set_trace()
     return data

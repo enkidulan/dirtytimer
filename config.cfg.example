@@ -5,9 +5,10 @@ after = 2016-03-01
 before = 2016-03-08
 
 [base]
-parts =
+collectors =
     jira
     git
+    github
 
 [git]
 provider = git
@@ -20,3 +21,10 @@ server = https://xxx.atlassian.net/
 uname = xxx.xxx
 pswd = xxxx
 user = xxx.xxx
+
+[github]
+provider = github
+uname = xxx@gmail.com
+pswd = xxxx
+repo_name = xxx/xxx
+user = xxxx
