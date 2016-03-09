@@ -1,11 +1,9 @@
 import configparser
-import importlib
-from zope import component
-# from .collecting_pluggins.git_repo import GitCollector
-from .interfaces import ITimeCollector
 
-
+import arrow
 from zope.component import getUtility
+
+from .interfaces import ITimeCollector
 
 
 def get_sections(sections, config):
@@ -22,14 +20,18 @@ def collect_time_stats(config, params=None):
     config = configparser.ConfigParser()
     config.read('config.cfg')
 
-    # providers = (p.split('=') for p in config['base']['collectors'].split())
-    # for provider, doten_path in providers:
-    #     module, klass = doten_path.rsplit('.', 1)
-    #     utility = getattr(importlib.import_module(module), klass)
-    #     component.provideUtility(utility(None), ITimeCollector, provider)
-
     data = dict(get_sections(config['base']['collectors'].split(), config))
-    print(data)
-    # import pdb; pdb.set_trace()
+    events_by_day = {}
+    for provider, records in data.items():
+        for record in records:
+            day = arrow.get(record.date).strftime("%Y-%m-%d")
+            events_by_day.setdefault(day, {}).setdefault(provider, []).append(record)
+
+
+    from pprint import pprint
+
+
+    pprint(events_by_day)
+    import pdb; pdb.set_trace()
     return data
 

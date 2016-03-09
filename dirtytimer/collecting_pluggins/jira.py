@@ -24,6 +24,7 @@ class JiraCollector():
         """
         jira = JIRA(
             params['server'], basic_auth=(params['uname'], params['pswd']))
+        # XXX: hadle non-active tasks for period
         issues = jira.search_issues(
             'project={project} and assignee = "{user}"'
             ' and updated < "{before}" AND updated > "{after}"'.format(**params))

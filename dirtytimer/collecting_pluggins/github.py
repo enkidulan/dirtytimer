@@ -37,6 +37,10 @@ class GithubCollector():
         comments = self.repo.get_pulls_review_comments(
             sort='updated', direction='asc', since=arrow.get(params['after']).datetime)
         for comment in comments:
+
+            if comment.user.login != params['login']:
+                continue
+
             work_records.append(
                 WorkRecord(
                     date=comment.updated_at,
